@@ -1,37 +1,133 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="vi">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <title>Halloween 🎃</title>
+
   <link rel="stylesheet" href="style.css">
+
+  <style>
+    .halloween-video {
+      display: block;
+      width: 100%;
+      max-width: 700px;
+      margin: 20px auto;
+      border-radius: 18px;
+      background: #000;
+    }
+  </style>
 </head>
+
 <body>
+
+  <!-- Hiệu ứng nền -->
   <div class="stars"></div>
   <div class="fog fog1"></div>
   <div class="fog fog2"></div>
 
+  <!-- Màn hình câu hỏi -->
   <main class="card" id="card">
+
     <div class="pumpkin">🎃</div>
+
     <p class="tag">HALLOWEEN NIGHT</p>
-    <h1 id="question">Bạn có muốn đón Halloween cùng mình không?</h1>
-    <p class="sub" id="sub">Có một bất ngờ nhỏ đang chờ bạn...</p>
+
+    <h1 id="question">
+      Bạn có muốn đón Halloween cùng mình không?
+    </h1>
+
+    <p class="sub" id="sub">
+      Có một bất ngờ nhỏ đang chờ bạn... 👻
+    </p>
 
     <div class="buttons">
       <button id="yes">Có 🎃</button>
       <button id="no">Không 😈</button>
     </div>
+
   </main>
 
+
+  <!-- Màn hình bất ngờ -->
   <div class="surprise" id="surprise">
+
     <div class="moon">🌕</div>
+
     <div class="ghost">👻</div>
+
     <p class="tag">HAPPY HALLOWEEN</p>
-    <h2>Vậy thì cùng mình đón Halloween nhé! 🎃</h2>
-    <p>Chúc bạn có một đêm Halloween thật vui và thật nhiều điều bất ngờ ✨</p>
-    <button id="again">Xem lại 🔄</button>
+
+    <h2>
+      Vậy thì cùng mình đón Halloween nhé! 🎃
+    </h2>
+
+    <!-- VIDEO -->
+    <video
+      id="halloweenVideo"
+      class="halloween-video"
+      controls
+      playsinline
+      preload="metadata"
+    >
+      <source src="1000018922.mp4" type="video/mp4">
+      Trình duyệt của bạn không hỗ trợ video.
+    </video>
+
+    <p>
+      Chúc bạn có một đêm Halloween thật vui
+      và thật nhiều điều bất ngờ ✨
+    </p>
+
+    <button id="again">
+      Xem lại 🔄
+    </button>
+
   </div>
 
+
+  <!-- JavaScript -->
   <script src="script.js"></script>
+
+  <script>
+    const yesButton = document.getElementById("yes");
+    const againButton = document.getElementById("again");
+    const card = document.getElementById("card");
+    const surprise = document.getElementById("surprise");
+    const video = document.getElementById("halloweenVideo");
+
+    /* Bấm CÓ */
+    yesButton.addEventListener("click", function () {
+
+      card.style.display = "none";
+      surprise.classList.add("show");
+
+      /* Cho video chạy */
+      video.currentTime = 0;
+
+      video.play().catch(function () {
+        /* Nếu trình duyệt chặn tự chạy,
+           người xem chỉ cần bấm nút Play */
+      });
+
+    });
+
+
+    /* Bấm XEM LẠI */
+    againButton.addEventListener("click", function () {
+
+      video.pause();
+      video.currentTime = 0;
+
+      surprise.classList.remove("show");
+
+      setTimeout(function () {
+        card.style.display = "block";
+      }, 300);
+
+    });
+  </script>
+
 </body>
-</html>
+        </html>
