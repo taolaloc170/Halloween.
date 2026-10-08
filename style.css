@@ -1,0 +1,55 @@
+*{box-sizing:border-box}
+html,body{margin:0;min-height:100%;font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
+body{
+  min-height:100vh; overflow:hidden; display:grid; place-items:center;
+  color:#fff; background:
+  radial-gradient(circle at 50% 20%,#43205f 0,#1b1030 38%,#080611 78%);
+  position:relative;
+}
+body:before{
+  content:""; position:absolute; inset:0; pointer-events:none;
+  background:radial-gradient(circle at 50% 35%,transparent 0 25%,rgba(0,0,0,.45) 75%);
+}
+.stars,.stars:before,.stars:after{position:absolute;inset:0;content:"";pointer-events:none}
+.stars{background-image:radial-gradient(#fff 1px,transparent 1px);background-size:72px 72px;opacity:.22}
+.stars:before{background-image:radial-gradient(#fff 1px,transparent 1px);background-size:113px 113px;transform:translate(20px,30px);opacity:.45}
+.stars:after{background-image:radial-gradient(#ffb35c 1px,transparent 1px);background-size:157px 157px;transform:translate(40px,-10px);opacity:.35}
+.fog{position:absolute;width:90vw;height:22vh;border-radius:50%;background:rgba(180,160,210,.07);filter:blur(30px);animation:drift 8s ease-in-out infinite alternate}
+.fog1{bottom:2%;left:-20%}.fog2{bottom:12%;right:-25%;animation-delay:-4s}
+@keyframes drift{to{transform:translateX(25vw)}}
+
+.card,.surprise{
+  width:min(90vw,520px); padding:34px 25px 30px; text-align:center;
+  border:1px solid rgba(255,255,255,.15); border-radius:28px;
+  background:rgba(18,10,31,.72); backdrop-filter:blur(14px);
+  box-shadow:0 25px 80px rgba(0,0,0,.45),0 0 45px rgba(255,111,0,.08);
+  position:relative; z-index:2;
+}
+.card{animation:float 3.5s ease-in-out infinite}
+@keyframes float{50%{transform:translateY(-8px)}}
+.pumpkin{font-size:76px;filter:drop-shadow(0 0 18px rgba(255,120,0,.55));animation:bob 2s ease-in-out infinite}
+@keyframes bob{50%{transform:rotate(5deg) scale(1.05)}}
+.tag{font-size:12px;letter-spacing:4px;color:#ff9b43;font-weight:800;margin:8px 0 15px}
+h1{font-size:clamp(25px,7vw,40px);line-height:1.18;margin:0 auto 12px;max-width:450px}
+.sub{color:#c7bfd0;margin:0 0 25px}
+.buttons{display:flex;justify-content:center;gap:13px;position:relative;min-height:54px}
+button{border:0;border-radius:999px;padding:15px 25px;font-size:16px;font-weight:800;cursor:pointer;color:#fff;transition:.2s;touch-action:manipulation}
+#yes{background:linear-gradient(135deg,#ff7a00,#ff3d00);box-shadow:0 8px 25px rgba(255,90,0,.3)}
+#no{background:#342b3d;position:relative}
+button:active{transform:scale(.94)}
+
+.surprise{display:none;animation:appear .7s ease}
+.surprise.show{display:block}
+@keyframes appear{from{opacity:0;transform:scale(.75)}to{opacity:1;transform:scale(1)}}
+.moon{font-size:75px;filter:drop-shadow(0 0 22px #fff);animation:moon 3s ease-in-out infinite}
+@keyframes moon{50%{transform:rotate(5deg) translateY(-6px)}}
+.ghost{font-size:55px;margin-top:-12px;animation:ghost 2s ease-in-out infinite}
+@keyframes ghost{50%{transform:translateY(-10px)}}
+.surprise h2{font-size:clamp(25px,7vw,38px);line-height:1.2;margin:5px 0 12px}
+.surprise p:not(.tag){color:#d4ccda;line-height:1.6}
+#again{margin-top:15px;background:#4a3857}
+.confetti{position:fixed;z-index:5;pointer-events:none;font-size:24px;animation:fall 1.7s ease-out forwards}
+@keyframes fall{0%{transform:translate(0,0) rotate(0);opacity:1}100%{transform:translate(var(--x),100vh) rotate(720deg);opacity:0}}
+.flash{position:fixed;inset:0;background:#fff;z-index:4;pointer-events:none;animation:flash .5s ease-out forwards}
+@keyframes flash{0%{opacity:.9}100%{opacity:0}}
+@media(max-width:420px){.card,.surprise{padding:28px 18px}.buttons{gap:9px}button{padding:14px 20px}.pumpkin{font-size:65px}}
